@@ -97,15 +97,43 @@ document.getElementById("calc-Repayment").addEventListener("click", function(){
    } else {
        error[3].classList.add("hidden");
    }
-
-   
    if (valid) {
-    var sum = num1 + num2;
+    const loanAmount = num1;
+    const years = num2;
+    const interestRate = num3;
+
+    // Monthly Interest Rate
+    const r = interestRate / 12 / 100; // Convert percentage to decimal
+
+    // Number of Payments (months)
+    const n = years * 12;
+
+    let monthlyRepayment;
+
+    const mortgageType = document.querySelector('input[name="option"]:checked').value;
+
+    if (mortgageType === "Repayment") {
+        // Repayment Mortgage Formula
+        monthlyRepayment = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    } else if (mortgageType === "InterestOnly") {
+        // Interest-Only Mortgage Formula
+        monthlyRepayment = loanAmount * r;
+    }
+
+    // Format the monthly repayment to two decimal places
+    monthlyRepayment = monthlyRepayment.toFixed(8);
+
+    // Calculate Total Repayment over the term
+    const totalRepayment = (monthlyRepayment * n).toFixed(8);
+
+    // Hide the first content section and show the result section
     document.getElementById("content").classList.add("hidden");
     document.getElementById("content2").classList.remove("hidden");
-    document.getElementById("monthly-rep").innerHTML = sum;
-    document.getElementById("term-rep").innerHTML = sum;
 
-   }
+    // Display the text and results
+    document.getElementById("monthly-rep").innerHTML = "$" + monthlyRepayment;
+    document.getElementById("term-rep").innerHTML = "$" + totalRepayment;
+}
+    
 });
     
