@@ -35,7 +35,7 @@ body{
     font-weight: 500;
     margin: 0;
     padding: 0;
-    margin: 150px auto;
+    margin: 80px auto;
     background-color: var(--Slate-100);
 }
 
@@ -239,7 +239,6 @@ form{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     vertical-align: middle; 
-    
 }
 
 .form-info .right p:first-of-type{
@@ -357,6 +356,7 @@ input[type="radio"] {
     .form-info input{
        width: 100%;
        outline: none;
+       border-radius:5px;
     }
    
     .topic{
